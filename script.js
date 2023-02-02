@@ -285,8 +285,8 @@ const checkAnswer = selectedAnswer => {
   // If answer is correct (allow typos with levenshtein distance <= 2)
   if (levenshtein(selectedAnswer.toUpperCase(), question.correctAnswer.toUpperCase()) <= 2) {
 
-    // Display smaller message on mobile
-    messageContent = `&#9989;<span class="invisible">_</span>${question.correctAnswer}<span class="invisible">_</span>${toggleCapitals ? `<span>- ${question.country}}</span>` : `<img class="small-flag" src="${image}" />`}`;
+    // Display smaller message on mobilej
+    messageContent = `&#9989;<span class="invisible">_</span>${toggleCapitals ? `<span>${question.country} -</span>` : `<img class="small-flag" src="${image}" />`}<span class="invisible">_</span>${question.correctAnswer}`;
 
     getCoordinates(question.correctAnswer, toggleCapitals, toggleUS);
     // Display a green ping on the globe at the correct answer's coordinates
@@ -302,7 +302,7 @@ const checkAnswer = selectedAnswer => {
 
   } else {
     // Display smaller message on mobile
-    messageContent = `&#10060;<span class="invisible">_</span>${question.correctAnswer}<span class="invisible">_</span>${toggleCapitals ? `<span>- ${question.country}</span>` : `<img class="small-flag" src="${image}" />`}`;
+    messageContent = `&#10060;<span class="invisible">_</span>${toggleCapitals ? `<span>${question.country} -</span>` : `<img class="small-flag" src="${image}" />`}<span class="invisible">_</span>${question.correctAnswer}`;
 
     getCoordinates(question.correctAnswer, toggleCapitals, toggleUS);
     // Display a red ping on the globe at the correct answer's coordinates
