@@ -116,6 +116,7 @@ const bank = {
           image: `./flags/${isUS ? "us-" : ""}${key}.png`,
           // Set the correct answer to the name or capital (depending on the isCapitals flag)
           correctAnswer: name,
+          country: flagDict[key][0],
           // Select the answers using the appropriate function (selectCountries or selectCapitals)
           answers: isCapitals ? selectCapitals(name) : selectCountries(name),
         });
@@ -149,9 +150,14 @@ for (let i = 1; i <= 10; i++) {
 
 // Update flag image and answer text elements
 const questionImage = document.getElementById('question-image');
+const questionCapitalCountry = document.getElementById('question-capital-country');
 const showQuestion = () => {
   const question = bank.questions[currentQuestionIndex];
   questionImage.src = question.image;
+  if (toggleCapitals) {
+    const countryName = bank.questions[currentQuestionIndex].country
+    questionCapitalCountry.innerText = countryName
+  }
   for (let i = 0; i < answerTextElements.length; i++) {
     answerTextElements[i].textContent = question.answers[i];
   }
@@ -502,6 +508,7 @@ function typeAnswersSwitch() {
 
 function toggleCapitalsSwitch() {
   toggleCapitals = !toggleCapitals;
+  questionCapitalCountry.innerText = ""
 }
 
 function toggleStatesSwitch() {
